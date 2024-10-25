@@ -1,0 +1,34 @@
+@use "@angular/material" as mat;
+@use "functions" as func;
+
+@import "colors.material";
+
+:root {
+  --ion-color-primary: #{mat.get-theme-color($light-theme, primary, 40)};
+  --ion-color-primary-rgb: #{func.to-raw-color(
+      mat.get-theme-color($light-theme, primary, 40),
+      ", "
+    )};
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #{mat.get-theme-color($light-theme, primary, 50)};
+  --ion-color-primary-tint: #{mat.get-theme-color($light-theme, primary, 30)};
+
+  --ion-color-secondary: #{mat.get-theme-color($light-theme, secondary, 40)};
+  --ion-color-secondary-rgb: #{func.to-raw-color(
+      mat.get-theme-color($light-theme, secondary, 40),
+      ", "
+    )};
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255, 255, 255;
+  --ion-color-secondary-shade: #{mat.get-theme-color(
+      $light-theme,
+      secondary,
+      50
+    )};
+  --ion-color-secondary-tint: ##{mat.get-theme-color(
+      $light-theme,
+      secondary,
+      30
+    )};
+}

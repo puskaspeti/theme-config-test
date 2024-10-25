@@ -1,0 +1,167 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use "sass:map";
+@use "@angular/material" as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Note: Color palettes are generated from primary: #0ccf6e, secondary: #d235c1
+$_palettes: (
+  primary: (
+    0: #000000,
+    10: #00210c,
+    20: #003919,
+    25: #004520,
+    30: #005228,
+    35: #00602f,
+    40: #006d37,
+    50: #008946,
+    60: #00a657,
+    70: #00c567,
+    80: #36e27e,
+    90: #60ff99,
+    95: #c3ffce,
+    98: #eaffea,
+    99: #f5fff3,
+    100: #ffffff,
+  ),
+  secondary: (
+    0: #000000,
+    10: #390034,
+    20: #5d0056,
+    25: #700067,
+    30: #830079,
+    35: #97008c,
+    40: #ac009f,
+    50: #cc2ebc,
+    60: #ec4ed8,
+    70: #ff79e9,
+    80: #ffaceb,
+    90: #ffd7f2,
+    95: #ffebf6,
+    98: #fff7f9,
+    99: #fffbff,
+    100: #ffffff,
+  ),
+  tertiary: (
+    0: #000000,
+    10: #001d34,
+    20: #003355,
+    25: #003e67,
+    30: #004a79,
+    35: #00568c,
+    40: #00629f,
+    50: #2a7bbc,
+    60: #4b95d8,
+    70: #69b0f5,
+    80: #9acbff,
+    90: #cfe4ff,
+    95: #e9f1ff,
+    98: #f8f9ff,
+    99: #fcfcff,
+    100: #ffffff,
+  ),
+  neutral: (
+    0: #000000,
+    10: #151d17,
+    20: #2a322b,
+    25: #353e36,
+    30: #404941,
+    35: #4c554c,
+    40: #586158,
+    50: #707970,
+    60: #8a9389,
+    70: #a4aea3,
+    80: #c0c9be,
+    90: #dce5da,
+    95: #eaf3e8,
+    98: #f3fcf0,
+    99: #f6fff3,
+    100: #ffffff,
+    4: #08100a,
+    6: #0d150f,
+    12: #19221a,
+    17: #242c25,
+    22: #2e372f,
+    24: #333b33,
+    87: #d3ddd1,
+    92: #e2ebdf,
+    94: #e7f0e5,
+    96: #edf6ea,
+  ),
+  neutral-variant: (
+    0: #000000,
+    10: #111e14,
+    20: #263428,
+    25: #313f33,
+    30: #3c4a3e,
+    35: #485649,
+    40: #536255,
+    50: #6c7b6d,
+    60: #859586,
+    70: #a0afa0,
+    80: #bbcbba,
+    90: #d7e7d6,
+    95: #e5f5e4,
+    98: #eefeec,
+    99: #f5fff3,
+    100: #ffffff,
+  ),
+  error: (
+    0: #000000,
+    10: #410002,
+    20: #690005,
+    25: #7e0007,
+    30: #93000a,
+    35: #a80710,
+    40: #ba1a1a,
+    50: #de3730,
+    60: #ff5449,
+    70: #ff897d,
+    80: #ffb4ab,
+    90: #ffdad6,
+    95: #ffedea,
+    98: #fff8f7,
+    99: #fffbff,
+    100: #ffffff,
+  ),
+);
+
+$_rest: (
+  secondary: map.get($_palettes, secondary),
+  neutral: map.get($_palettes, neutral),
+  neutral-variant: map.get($_palettes, neutral-variant),
+  error: map.get($_palettes, error),
+);
+$_primary: map.merge(map.get($_palettes, primary), $_rest);
+$_tertiary: map.merge(map.get($_palettes, tertiary), $_rest);
+
+$light-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: light,
+      primary: $_primary,
+      tertiary: $_tertiary,
+    ),
+  )
+);
+$dark-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: dark,
+      primary: $_primary,
+      tertiary: $_tertiary,
+    ),
+  )
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+html {
+  @include mat.all-component-themes($light-theme);
+}

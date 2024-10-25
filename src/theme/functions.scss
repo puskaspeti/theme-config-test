@@ -1,0 +1,14 @@
+@use "sass:string";
+@use "sass:list";
+
+@function to-raw-color($color, $separator: " ") {
+  $rgbaValue: #{rgba($color, 0)};
+  $a: string.slice($rgbaValue, 1, -5);
+  $b: string.slice(#{$a}, 6);
+  $c: string.split($b, ",");
+  $d: #{list.nth($c, 1)}#{$separator}#{list.nth($c, 2)}#{$separator}#{list.nth(
+      $c,
+      3
+    )};
+  @return $d;
+}
